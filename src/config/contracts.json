@@ -1,0 +1,11 @@
+{
+  "testnet": {
+    "example-applet": {
+      "contractHash": "0x6578616d706c652d6170706c6574313736383534",
+      "deployedAt": "2026-01-16T05:42:36.547Z",
+      "wasmPath": "applets\\example-applet\\target\\wasm32-unknown-unknown\\release\\example_applet.wasm"
+    }
+  },
+  "mainnet": {},
+  "local": {}
+}

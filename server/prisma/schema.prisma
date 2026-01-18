@@ -1,0 +1,69 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String      @id @default(uuid())
+  walletAddress String      @unique
+  createdAt     DateTime    @default(now())
+  executions    Execution[]
+  settings      Settings?
+}
+
+model Settings {
+  id                String   @id @default(uuid())
+  userId            String   @unique
+  user              User     @relation(fields: [userId], references: [id])
+  
+  // Notifications
+  emailNotifications Boolean @default(true)
+  executionAlerts    Boolean @default(true)
+  marketplaceUpdates Boolean @default(false)
+  securityAlerts     Boolean @default(true)
+
+  // Privacy
+  showBalance       Boolean @default(true)
+  showActivity      Boolean @default(true)
+  analyticsEnabled  Boolean @default(true)
+
+  // Network
+  network           String  @default("mainnet")
+  autoGasOptimization Boolean @default(true)
+  maxGasPrice       Int     @default(500)
+  
+  // Advanced
+  slippageTolerance Float   @default(0.5)
+  transactionDeadline Int   @default(20)
+}
+
+model Applet {
+  id          String      @id @default(uuid())
+  name        String
+  provider    String
+  category    String
+  description String
+  gasCost     Int
+  icon        String
+  metrics     String?      // Stored as JSON string
+  estTime     String       @default("~2-3 seconds")
+  securityStatus String    @default("Verified")
+  version     String       @default("v1.0.0")
+  compliance  String       @default("None")
+  executions  Execution[]
+}
+
+model Execution {
+  id        String   @id @default(uuid())
+  status    String   // success, failed, pending
+  fee       Int
+  timestamp DateTime @default(now())
+  appletId  String
+  applet    Applet   @relation(fields: [appletId], references: [id])
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+}
