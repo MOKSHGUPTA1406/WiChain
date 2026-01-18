@@ -67,21 +67,54 @@ A production-ready DApp for discovering, authenticating, and executing cross-pod
 ## 💻 Development
 
 ### Prerequisites
-- Node.js 18+
-- npm or pnpm
+- Node.js installed
+- MetaMask extension installed in your browser
 
-### Installation
+### Local Development Setup
+This project consists of three parts that need to be running simultaneously. You will need **3 separate terminal windows**.
 
-```bash
-# Install dependencies
-npm install
+#### Step 1: Start Local Blockchain (Terminal 1)
+1. Open a terminal in the root directory.
+2. Run the following command to start Ganache:
+   ```bash
+   npx -y ganache --mnemonic "test test test test test test test test test test test junk" --port 8545 --chain.networkId 1337 --chain.chainId 1337
+   ```
+   *Note: Detailed accounts and keys will be listed once started.*
 
-# Start development server
-npm run dev
+#### Step 2: Start Backend Server (Terminal 2)
+1. Open a new terminal.
+2. Navigate to the server directory:
+   ```bash
+   cd server
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the server:
+   ```bash
+   npm run dev
+   ```
 
-# Build for production
-npm run build
-```
+#### Step 3: Start Frontend Application (Terminal 3)
+1. Open a new terminal in the root directory.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the application:
+   ```bash
+   npm run dev
+   ```
+4. Open your browser and go to `http://localhost:5173`.
+
+#### Step 4: MetaMask Setup
+1. Open MetaMask and ensure you are connected to **Localhost 8545**.
+   - **RPC URL**: `http://localhost:8545`
+   - **Chain ID**: `1337`
+   - **Currency Symbol**: `ETH`
+2. Import a test account using one of the Private Keys shown in Terminal 1 (Ganache).
+3. **Important**: If you restart Ganache, always reset your MetaMask account via **Settings > Advanced > Clear activity tab data** to avoid nonce errors.
 
 ### Environment Variables
 
