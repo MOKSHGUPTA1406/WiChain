@@ -231,9 +231,8 @@ MIT License - see LICENSE file for details
 
 ## 🔗 Links
 
-- [WeilChain Documentation](https://docs.weilchain.io)
-- [Weil-SDK](https://github.com/weilchain/weil-sdk)
-- [WADK CLI](https://github.com/weilchain/wadk)
+- [WeilChain Documentation](https://docs.weilliptic.ai/docs/)
+- [WADK CLI](https://github.com/weilliptic-public/wadk)
 
 ---
 
